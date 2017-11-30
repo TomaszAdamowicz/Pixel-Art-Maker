@@ -13,13 +13,10 @@
   <header>
     <h1>Lab: Pixel Art Maker</h1>
   </header>
-  
   <main>
     <div class="flex-container">
-      
       <div class="controls-wrapper">
         <h2>Choose Grid Size</h2>
-        
         <form class="grid-controls" id="size-picker">
             <p>Grid Height:</p>
             <input type="number" id="input-height" name="height" min="1" value="10" aria-label="Enter grid height">
@@ -27,35 +24,29 @@
             <input type="number" id="input-width" name="width" min="1" value="10" aria-label="Enter grid width">
             <button id="input-submit" aria-label="Submit">Draw new grid</button>
         </form>
-        
         <div class="buttons-wrapper">
           <button id="button-clear" aria-label="Clear canvas">Clear canvas</button>
-          <button class="not-active" id="button-erease" aria-label="Erease">Erease</button>
+          <button class="not-active" id="button-erase" aria-label="Erease">Erase</button>
           <button id="hide-grid" aria-label="Hide Grid">Hide Grid</button>
           <button id="reset-grid" aria-label="Reset Grid">Reset Grid</button>
         </div> <!-- .buttons-wrapper -->
-        
         <h2>Pick A Color</h2>
         <input type="color" id="color-picker" value="#33C3F0">
       </div> <!-- .controls-wrapper -->
-
       <div class="canvas-wrapper">
         <h2>Design Canvas</h2>
         <table class="grid-container rulers-on" id="pixel-canvas">
         </table>
       </div> <!-- .canvas-wrapper -->
-      
-    </div><!-- .row -->
+    </div><!-- .flex-container -->
   </main>
-
   <aside>
     <div id="modal" class="modal-wrapper">
-      <div class="alert">
+      <div id="modal-alert" class="alert">
         <button id="close-modal" aria-label="Close modal">Ok, I get it.</button>
       </div>
-    </div><!-- #modal -->
+    </div><!-- .modal-wrapper -->
   </aside>
-
   <footer>
     <p>® Tomasz Adamowicz 2017</p>
   </footer>
