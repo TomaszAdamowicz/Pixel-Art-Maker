@@ -8,7 +8,7 @@
 
 It's simple vanilla JS exercise for Google Udacity Scholarsip Challenge. 
 
-You can see it working under [Pixel Art Maker] (https://studio-adto/pixel-art-maker/)
+You can see it working under [Pixel Art Maker] (https://studio-adto.pl/pixel-art-maker/)
 
 
 
