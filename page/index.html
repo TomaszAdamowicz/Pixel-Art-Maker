@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pixel Art Maker!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton|Lato">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Lab: Pixel Art Maker</h1>
+  </header>
+  
+  <main>
+    <div class="flex-container">
+      
+      <div class="controls-wrapper">
+        <h2>Choose Grid Size</h2>
+        
+        <form class="grid-controls" id="sizePicker">
+            <p>Grid Height:</p>
+            <input type="number" id="input_height" name="height" min="1" value="10" aria-label="Enter grid height">
+            <p>Grid Width:</p>
+            <input type="number" id="input_width" name="width" min="1" value="10" aria-label="Enter grid width">
+            <button id="input_submit" aria-label="Submit">Draw new grid</button>
+        </form>
+        
+        <div class="buttons-wrapper">
+          <button id="button_clear" aria-label="Clear canvas">Clear canvas</button>
+          <button class="not-active" id="button_erease" aria-label="Erease">Erease</button>
+          <button id="hide_grid" aria-label="Hide Grid">Hide Grid</button>
+          <button id="reset_grid" aria-label="Reset Grid">Reset Grid</button>
+        </div> <!-- .buttons-wrapper -->
+        
+        <h2>Pick A Color</h2>
+        <input type="color" id="colorPicker" value="#33C3F0">
+      </div> <!-- .controls-wrapper -->
+
+      <div class="canvas-wrapper">
+        <h2>Design Canvas</h2>
+        <table class="grid-container rulers-on" id="pixel_canvas">
+        </table>
+      </div> <!-- .canvas-wrapper -->
+      
+    </div><!-- .row -->
+  </main>
+  
+  <aside>
+    <div id="modal" class="modal-wrapper">
+      <div class="alert">
+        <p>Sorry, to optimize the experience. Grid shouldn't be bigger than 20 cells height and 35 cells width.</p>
+        <button id="close_modal" aria-label="Close modal">Ok, I get it.</button>
+      </div>
+    </div><!-- #modal -->
+  </aside>
+  
+  <footer>
+    <p>® Tomasz Adamowicz 2017</p>
+  </footer>
+  <script src="assets/js/designs.js"></script>
+</body>
+</html>

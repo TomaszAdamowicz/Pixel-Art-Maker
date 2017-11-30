@@ -1,0 +1,19 @@
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+.controls-wrapper {
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
+}
+
+.canvas-wrapper {
+  -ms-flex-preferred-size: 60%;
+      flex-basis: 60%;
+}

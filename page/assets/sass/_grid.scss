@@ -1,0 +1,28 @@
+.rulers-on {
+  border: .1em solid transparent;
+  tr,
+  td {
+    border: .1em solid black;
+  }
+}
+
+.rulers-off {
+  border: .1em solid #ccc;
+  tr,
+  td {
+    border: .1em solid #fff;
+  }
+}
+
+.grid-container {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+tr {
+  height: 1.2em;
+}
+
+td {
+  width: 1.2em;
+}
