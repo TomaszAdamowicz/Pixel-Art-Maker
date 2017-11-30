@@ -1,4 +1,4 @@
-const erease = document.getElementById('button-erease');
+const erase = document.getElementById('button-erase');
 const pixelCanvas = document.getElementById('pixel-canvas');
 const height = document.getElementById('input-height');
 const width =  document.getElementById('input-width');
@@ -34,7 +34,7 @@ let grid = {
     }
   },
   changeColor : (elem) => {
-    if (erease.classList.contains('active') === true) {
+    if (erase.classList.contains('active') === true) {
       elem.style.backgroundColor = '';
     } else {
       const picker = document.getElementById('color-picker');
@@ -86,7 +86,7 @@ function testGrid(h,w) {
   if ((h > cellsX) || (w > cellsY)) {
     updateModalMessage(cellsY,cellsX);
     toggleModal(modal);
-  } else if ((h === 0) || (w === 0)) {
+  } else if ((h <= 0) || (w <= 0)) {
     updateModalMessage(0,0);
     toggleModal(modal);
   } else {
@@ -104,7 +104,7 @@ let countCellsX = (num,num1) => {
   return Math.floor((num-num1)/20);
 };
 
-// Display modal message with calculated amount of cells
+// Update message with calculated amount of cells
 
 let updateModalMessage = (num,num1) => {
   let button = document.getElementById('close-modal');
@@ -155,9 +155,9 @@ document.getElementById('button-clear').addEventListener('click' , (e) => {
   grid.clearGrid();
 });
 
-// Toggle class 'active' on erease button
+// Toggle class 'active' on erase button
 
-erease.addEventListener('click', () => {
+erase.addEventListener('click', () => {
   event.target.classList.toggle('not-active');
   event.target.classList.toggle('active');
 });
