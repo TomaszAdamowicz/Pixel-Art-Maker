@@ -15,17 +15,17 @@ html {
         box-sizing: inherit;
 }
 
+body {
+  font-family: 'Lato' , sans-serif;
+  position: relative;
+}
+
 header,
 main,
 footer {
   max-width: 1920px;
   width: 95%;
   margin: 0 auto;
-}
-
-body {
-  font-family: 'Lato' , sans-serif;
-  position: relative;
 }
 
 h1 {

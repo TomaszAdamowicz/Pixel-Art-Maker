@@ -1,16 +1,14 @@
-# Pixel Art Maker Project
+# Pixel Art Maker Project by Tomasz Adamowicz
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [About](#about)
 
-## Instructions
+## About
 
-To get started, open `designs.js` and start building out the app's functionality.
+It's simple vanilla JS exercise for Google Udacity Scholarsip Challenge. 
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+You can see it working under [Pixel Art Maker] (https://studio-adto/pixel-art-maker/)
 
-## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+

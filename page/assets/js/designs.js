@@ -1,9 +1,9 @@
-const erease = document.getElementById('button_erease');
-const canvas = document.getElementById('pixel_canvas');
-let height = document.getElementById('input_height');
-let width =  document.getElementById('input_width');
+const erease = document.getElementById('button-erease');
+const pixelCanvas = document.getElementById('pixel-canvas');
+const height = document.getElementById('input-height');
+const width =  document.getElementById('input-width');
+const modalAlert = document.querySelector('#modal .alert');
 let cells = document.getElementsByTagName('td');
-
 
 // Grid object
 
@@ -13,7 +13,7 @@ let grid = {
   rulers: true,
   makeGrid : (height,width) => {
     let i = 1;
-    canvas.innerHTML = "";
+    pixelCanvas.innerHTML = "";
 
     while (i <= height){
       const tr = document.createElement('tr');
@@ -21,7 +21,7 @@ let grid = {
         const tc = document.createElement('td');
         tr.appendChild(tc);
       };
-      canvas.appendChild(tr);
+      pixelCanvas.appendChild(tr);
       i++;
     };
     grid.selectCell();
@@ -33,22 +33,22 @@ let grid = {
       });
     };
   },
-  changeColor : (item) => {
+  changeColor : (elem) => {
     if (erease.classList.contains('active') === true) {
-      item.style.backgroundColor = '';
+      elem.style.backgroundColor = '';
     } else {
-      const picker = document.getElementById('colorPicker');
-      item.style.backgroundColor = picker.value;
+      const picker = document.getElementById('color-picker');
+      elem.style.backgroundColor = picker.value;
     }
   },
   drawRulers : () => {
     if (grid.rulers === true) {
-      canvas.classList.remove('rulers-on');
-      canvas.className += ' rulers-off';
+      pixelCanvas.classList.remove('rulers-on');
+      pixelCanvas.className += ' rulers-off';
       grid.rulers = false;
     } else {
-      canvas.classList.remove('rulers-off');
-      canvas.className += ' rulers-on';
+      pixelCanvas.classList.remove('rulers-off');
+      pixelCanvas.className += ' rulers-on';
       grid.rulers = true;
     };
   },
@@ -65,48 +65,80 @@ window.onload = () => {
   grid.makeGrid(grid.h,grid.w);
 };
 
-// Load new grid from user inputs, test its size ( clear old grid, update grid object values and pass them to grid method).
+// Load new grid
 
-document.getElementById('input_submit').addEventListener('click', (e) => {
+document.getElementById('input-submit').addEventListener('click', (e) => {
   grid.h = height.value;
   grid.w = width.value;
   e.preventDefault();
   testGrid(grid.h, grid.w);
 });
 
+// Test if grid size doesn't exceed container. Fire modal if, it doesn't.
+
 function testGrid(h,w) {
-  if ((h >= 20) || (w >= 35)) {
+  const controlsW = document.querySelector('.controls-wrapper').offsetWidth;
+  const canvasH = document.querySelector('.canvas-wrapper').offsetHeight;
+  const winW = window.innerWidth;
+  let cellsX =  countCellsY(canvasH);
+  let cellsY = countCellsX(winW, controlsW);
+  
+  if ((h > cellsX) || (w > cellsY)) {
+    updateModalMessage(cellsY,cellsX);
     toggleModal(modal);
   } else {
     grid.makeGrid(grid.h,grid.w);
   }
 }
 
+// Calculate maximum number of cells in grid
+
+let countCellsY = (num) => {
+  return Math.floor(num/20);
+};
+
+let countCellsX = (num,num1) => {
+  return Math.floor((num-num1)/20);
+};
+
+// Display modal message with calculated amount of cells
+
+let updateModalMessage = (num,num1) => {
+  let button = document.getElementById('close-modal');
+  let p = document.createElement('p');
+  let message = document.createTextNode('For better experience grid shouldn\'t be bigger than ' + num1 + ' columns height and ' + num + ' columns width.');
+  
+  p.setAttribute('id','modal-message');
+  p.appendChild(message);
+  
+  modalAlert.insertBefore(p,button);
+};
+
 // Close modal
 
-document.getElementById('close_modal').addEventListener('click', () => {
+document.getElementById('close-modal').addEventListener('click', () => {
   toggleModal(modal);
 });
 
 // Toggle modal
 
-function toggleModal(e){
-  if ( isNotVisible(e)) {
-    e.className += ' modal-active';
+function toggleModal(elem){
+  if ( isNotVisible(elem)) {
+    elem.className += ' modal-active';
   } else {
-    e.classList.remove('modal-active');
+    elem.classList.remove('modal-active');
   };
 }
 
 //Check visibility of an element
 
-let isNotVisible = (e) => {
-  return (e.offsetWidth == 0 && e.offsetHeight == 0);
-}
+let isNotVisible = (elem) => {
+  return (elem.offsetWidth == 0 && elem.offsetHeight == 0);
+};
 
 // Clear grid using grid method
 
-document.getElementById('button_clear').addEventListener('click' , (e) => {
+document.getElementById('button-clear').addEventListener('click' , (e) => {
   e.preventDefault();
   grid.clearGrid();
 });
@@ -120,13 +152,12 @@ erease.addEventListener('click', () => {
 
 // Hide grid rulers using grid method
 
-document.getElementById('hide_grid').addEventListener('click', () => {
+document.getElementById('hide-grid').addEventListener('click', () => {
   grid.drawRulers();
 });
 
 // Reset grid to starer position
 
-document.getElementById('reset_grid').addEventListener('click', () => {
+document.getElementById('reset-grid').addEventListener('click', () => {
   grid.makeGrid(10,10);
 });
-
