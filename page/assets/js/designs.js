@@ -157,9 +157,9 @@ document.getElementById('button-clear').addEventListener('click' , (e) => {
 
 // Toggle class 'active' on erase button
 
-erase.addEventListener('click', () => {
-  event.target.classList.toggle('not-active');
-  event.target.classList.toggle('active');
+erase.addEventListener('click', (e) => {
+  e.target.classList.toggle('not-active');
+  e.target.classList.toggle('active');
 });
 
 // Hide grid rulers using grid method
