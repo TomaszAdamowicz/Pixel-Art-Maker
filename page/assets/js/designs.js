@@ -74,7 +74,7 @@ document.getElementById('input-submit').addEventListener('click', (e) => {
   testGrid(grid.h, grid.w);
 });
 
-// Test if grid size doesn't exceed container. Fire modal if, it doesn't.
+// Test if grid size doesn't exceed container. Fire modal if, it does.
 
 function testGrid(h,w) {
   const controlsW = document.querySelector('.controls-wrapper').offsetWidth;
