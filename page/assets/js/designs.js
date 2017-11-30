@@ -2,7 +2,7 @@ const erease = document.getElementById('button-erease');
 const pixelCanvas = document.getElementById('pixel-canvas');
 const height = document.getElementById('input-height');
 const width =  document.getElementById('input-width');
-const modalAlert = document.querySelector('#modal .alert');
+const modalAlert = document.querySelector('#modal-alert');
 let cells = document.getElementsByTagName('td');
 
 // Grid object
@@ -20,10 +20,10 @@ let grid = {
       for (let column = 1; column <= width; column++) {
         const tc = document.createElement('td');
         tr.appendChild(tc);
-      };
+      }
       pixelCanvas.appendChild(tr);
       i++;
-    };
+    }
     grid.selectCell();
   },
   selectCell : () => {
@@ -31,7 +31,7 @@ let grid = {
       cells[i].addEventListener('click', (e) => {
         grid.changeColor(e.target);
       });
-    };
+    }
   },
   changeColor : (elem) => {
     if (erease.classList.contains('active') === true) {
@@ -50,12 +50,12 @@ let grid = {
       pixelCanvas.classList.remove('rulers-off');
       pixelCanvas.className += ' rulers-on';
       grid.rulers = true;
-    };
+    }
   },
   clearGrid : () => {
     for (let i = 0; i < cells.length; i++) {
       cells[i].style.backgroundColor = '';
-    };
+    }
   }
 };
 
@@ -86,6 +86,9 @@ function testGrid(h,w) {
   if ((h > cellsX) || (w > cellsY)) {
     updateModalMessage(cellsY,cellsX);
     toggleModal(modal);
+  } else if ((h === 0) || (w === 0)) {
+    updateModalMessage(0,0);
+    toggleModal(modal);
   } else {
     grid.makeGrid(grid.h,grid.w);
   }
@@ -106,17 +109,26 @@ let countCellsX = (num,num1) => {
 let updateModalMessage = (num,num1) => {
   let button = document.getElementById('close-modal');
   let p = document.createElement('p');
-  let message = document.createTextNode('For better experience grid shouldn\'t be bigger than ' + num1 + ' columns height and ' + num + ' columns width.');
+  let message = createMessage(num, num1);
   
   p.setAttribute('id','modal-message');
   p.appendChild(message);
-  
   modalAlert.insertBefore(p,button);
+};
+
+let createMessage = (num,num1) => {
+  if (num && num1 > 0) {
+    return document.createTextNode('For better experience grid shouldn\'t be bigger than ' + num1 + ' columns height and ' + num + ' columns width.');
+  } else {
+    return document.createTextNode('To create grid enter value greater than 0');
+  }
 };
 
 // Close modal
 
 document.getElementById('close-modal').addEventListener('click', () => {
+  let message = document.getElementById('modal-message');
+  modalAlert.removeChild(message);
   toggleModal(modal);
 });
 
