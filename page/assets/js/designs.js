@@ -3,6 +3,8 @@ const pixelCanvas = document.getElementById('pixel-canvas');
 const height = document.getElementById('input-height');
 const width =  document.getElementById('input-width');
 const modalAlert = document.querySelector('#modal-alert');
+const modal = document.getElementById('modal');
+
 let cells = document.getElementsByTagName('td');
 
 // Grid object
@@ -11,13 +13,13 @@ let grid = {
   w : width.value,
   h : height.value,
   rulers: true,
-  makeGrid : (height,width) => {
+  makeGrid : (gridHeight,gridWidth) => {
     let i = 1;
     pixelCanvas.innerHTML = "";
 
-    while (i <= height){
+    while (i <= gridHeight){
       const tr = document.createElement('tr');
-      for (let column = 1; column <= width; column++) {
+      for (let column = 1; column <= gridWidth; column++) {
         const tc = document.createElement('td');
         tr.appendChild(tc);
       }
@@ -128,6 +130,7 @@ let createMessage = (num,num1) => {
 
 document.getElementById('close-modal').addEventListener('click', () => {
   let message = document.getElementById('modal-message');
+  
   modalAlert.removeChild(message);
   toggleModal(modal);
 });
@@ -139,7 +142,7 @@ function toggleModal(elem){
     elem.className += ' modal-active';
   } else {
     elem.classList.remove('modal-active');
-  };
+  }
 }
 
 //Check visibility of an element
