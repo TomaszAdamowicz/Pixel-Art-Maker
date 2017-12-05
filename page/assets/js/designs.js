@@ -167,8 +167,17 @@ erase.addEventListener('click', (e) => {
 
 // Hide grid rulers using grid method
 
-document.getElementById('hide-grid').addEventListener('click', () => {
+document.getElementById('hide-grid').addEventListener('click', (e) => {
+  const btn = e.target;
+  const txt = document.getElementById('grid-indicator')
+  
   grid.drawRulers();
+  btn.classList.toggle('active');
+  if (btn.classList.contains('active')) {
+    txt.textContent = 'off';
+  } else {
+    txt.textContent = 'on';
+  }
 });
 
 // Reset grid to starer position
